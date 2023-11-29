@@ -42,21 +42,34 @@ const ConfiguracionCarrito = () => {
     }, 0);
   };
 
+
+  const CerrarCarrito = () =>{
+    const btnCerrarCarrito = document.querySelector(".btn-cerrar-carrito");
+    const carritoHTML = document.querySelector(".bg-carrito");
+    btnCerrarCarrito.addEventListener("click", () =>{
+        carritoHTML.classList.add("d-none");
+    })
+}
+
+
   return (
-    <Form style={{ position: "sticky", top: 20 }} onSubmit={handleSubmit}>
-      <Table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Nombre</th>
-            <th>Cantidad</th>
-            <th>Precio</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {players.map((player, index) => (
-            <tr key={`player-${index}`}>
+    <div className="d-none bg-carrito">
+      <button className="btn-cerrar-carrito" onClick={CerrarCarrito}>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-x" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M10 10l4 4m0 -4l-4 4" />
+                <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z" />
+            </svg>
+      </button>
+      <div className="ver-carrito">
+        <Form style={{ position: "sticky", top: 20 }} onSubmit={handleSubmit}>
+          <Table>
+              <thead >
+                <h3 className="title-carrito">Productos</h3>
+              </thead>
+              <tbody >
+                {players.map((player, index) => (
+                  <tr className="productos-carrito" key={`player-${index}`}>
               <td>
                 <img src={player.img} height={50} alt={player.nombre} />
               </td>
@@ -73,6 +86,9 @@ const ConfiguracionCarrito = () => {
       <p> Precio total es ${calcularPrecioTotal()}</p>      
       <Button type="submit">Comprar</Button>
     </Form>
+      </div>
+    </div>
+    
   );
 };
 

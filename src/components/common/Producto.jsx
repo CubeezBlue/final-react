@@ -11,7 +11,7 @@ const Producto = ({ id, img, nombre, precio, style, actions }) => {
         </ul>
 
         {actions.map((action, index) => (
-          <Button key={`action-${index}`} onClick={action.onClick}>
+          <Button  className="btn-producto" key={`action-${index}`} onClick={action.onClick}>
             {action.content}
           </Button>
         ))}
