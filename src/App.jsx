@@ -1,12 +1,15 @@
 import Contact from "./pages/Contact";
-import Home from "./pages/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/NavBar";
 import Detail from "./pages/Detail";
-import  {CarritoProvider}  from "./contexts/Carrito";
+import  {CarritoProvider}  from "./Helper/Carrito";
+import Type from "./pages/Type";
+import Home from "./pages/Home";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,7 +26,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+
 
 function App() {
   return (
@@ -32,7 +39,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/productos/:nombre" element={<Detail />} />
+          <Route path="/productos/:type/:nombre" element={<Detail />} />
+          <Route path="/productos/:type" element={<Type />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </CarritoProvider>
@@ -40,4 +48,6 @@ function App() {
   );
 }
 
-export default App;
+export {db};
+export  default App;
+

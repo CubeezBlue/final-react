@@ -3,14 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { productos } from "../data/productos";
 
 const Detail = () => {
-  const { nombre } = useParams();
+  const { nombre, type } = useParams();
   const navigate = useNavigate();
 
-  const producto = productos.find((i) => i.nombre === nombre);
+  const producto = productos.find((i) => i.nombre === nombre && i.type === type);
 
   return (
     <Container>
-      <h1>Detail de {nombre}</h1>
+      <h1>{nombre}</h1>
 
       <Card>
         <Card.Img variant="top" src={`../${producto.img}`}/>

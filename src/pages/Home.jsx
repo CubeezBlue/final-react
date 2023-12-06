@@ -1,4 +1,4 @@
-import ProductosContainer from "../components/containers/ProductosContainer";
+import ProductosContainer from "../components/containers/ItemListContainer";
 import {productos} from "../data/productos";
 import { Col, Container, Row } from "react-bootstrap";
 import ConfiguracionCarrito from "../components/containers/ConfiguracionCarrito";

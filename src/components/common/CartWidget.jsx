@@ -1,4 +1,4 @@
-import { useCarrito } from "../../contexts/Carrito";
+import { useCarrito } from "../../Helper/Carrito";
 
 const CartWidget = () => {
     const { players } = useCarrito();

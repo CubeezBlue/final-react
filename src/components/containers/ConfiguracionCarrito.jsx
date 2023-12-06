@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Form, Table, Button } from "react-bootstrap";
-import { useCarrito } from "../../contexts/Carrito";
+import { useCarrito } from "../../Helper/Carrito";
 import { carritoServices } from "../../services/compras";
 
 const ConfiguracionCarrito = () => {
