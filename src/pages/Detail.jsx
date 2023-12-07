@@ -1,19 +1,32 @@
 import { Button, Card, Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { productos } from "../data/productos";
+import { useEffect, useState } from "react";
+import { obtenerDetallesProductoDesdeFirebase } from "../services/firebase";
 
 const Detail = () => {
-  const { nombre, type } = useParams();
+  const { nombre } = useParams();
   const navigate = useNavigate();
+  const [producto, setProducto] = useState({});
 
-  const producto = productos.find((i) => i.nombre === nombre && i.type === type);
+  useEffect(() => {
+    const obtenerDetallesProducto = async () => {
+      const detallesProducto = await obtenerDetallesProductoDesdeFirebase(nombre);
+      setProducto(detallesProducto);
+    };
+
+    obtenerDetallesProducto();
+  }, [nombre]);
+
+  if (!producto || Object.keys(producto).length === 0) {
+    return <p>Cargando detalles del producto...</p>;
+  }
 
   return (
     <Container>
       <h1>{nombre}</h1>
 
       <Card>
-        <Card.Img variant="top" src={`../${producto.img}`}/>
+        <Card.Img variant="top" src={`../${producto.img}`} />
         <Card.Body>
           <Card.Title>{producto.nombre}</Card.Title>
           <Card.Text>

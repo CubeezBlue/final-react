@@ -1,3 +1,6 @@
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 import Contact from "./pages/Contact";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/layout/NavBar";
@@ -6,9 +9,7 @@ import  {CarritoProvider}  from "./Helper/Carrito";
 import Type from "./pages/Type";
 import Home from "./pages/Home";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -29,7 +30,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-
+export {db};
 
 
 function App() {
@@ -48,6 +49,6 @@ function App() {
   );
 }
 
-export {db};
+
 export  default App;
 

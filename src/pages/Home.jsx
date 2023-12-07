@@ -1,11 +1,22 @@
+import { useEffect, useState } from "react";
+import { obtenerProductosDesdeFirebase } from "../services/firebase";
+import { Container, Row, Col } from "react-bootstrap";
 import ProductosContainer from "../components/containers/ItemListContainer";
-import {productos} from "../data/productos";
-import { Col, Container, Row } from "react-bootstrap";
 import ConfiguracionCarrito from "../components/containers/ConfiguracionCarrito";
-import { useEffect } from "react";
 import { carritoServices } from "../services/compras";
 
 const Home = () => {
+  const [productos, setProductos] = useState([]);
+
+  useEffect(() => {
+    const obtenerProductos = async () => {
+      const productosDesdeFirebase = await obtenerProductosDesdeFirebase();
+      setProductos(productosDesdeFirebase);
+    };
+
+    obtenerProductos();
+  }, []);
+
   useEffect(() => {
     carritoServices.getCompra().then((data) => console.log(data));
   }, []);
